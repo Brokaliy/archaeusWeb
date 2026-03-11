@@ -114,7 +114,8 @@ nav.scrolled {
   color: var(--text);
 }
 
-.nav-logo svg {
+.nav-logo svg,
+.nav-logo img {
   flex-shrink: 0;
 }
 
