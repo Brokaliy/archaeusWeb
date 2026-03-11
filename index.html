@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Archaeus — Linux, the way it should feel</title>
-  <meta name="description" content="A modern Arch-based Linux distribution built around a visual control center. No terminal required for the basics." />
+  <title>Archaeus — Your system, your way</title>
+  <meta name="description" content="Arch Linux with a visual control center. Install apps, switch DEs, tweak keybinds — no config editing required." />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
 
-<!-- ── NAV ──────────────────────────────────────────────── -->
 <nav>
   <a href="/" class="nav-logo">
     <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-      <path d="M13 3 L22 22 H4 Z" stroke="#c4874a" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
-      <path d="M7.5 17 H18.5" stroke="#c4874a" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
-      <circle cx="13" cy="13" r="2.5" fill="#c4874a" opacity="0.7"/>
+      <path d="M13 3 L22 22 H4 Z" stroke="#C8A96E" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+      <path d="M7.5 17 H18.5" stroke="#C8A96E" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="13" cy="13" r="2.5" fill="#C8A96E" opacity="0.7"/>
     </svg>
     Archaeus
   </a>
   <ul class="nav-links">
-    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/">Home</a></li>
     <li><a href="/features/">Features</a></li>
     <li><a href="/download/">Download</a></li>
     <li><a href="/docs/">Docs</a></li>
@@ -30,26 +29,24 @@
   <a href="/download/" class="btn btn-primary btn-sm nav-cta">Download ISO</a>
 </nav>
 
-<!-- ── HERO ─────────────────────────────────────────────── -->
 <section class="hero-section">
   <div class="hero-bg-glow"></div>
   <div class="container hero-inner">
     <div class="hero-content">
       <span class="pill reveal">
         <span class="pill-dot"></span>
-        Built on Arch Linux
+        Arch Linux · Hyprland · Wayland
       </span>
 
       <h1 class="hero-title reveal reveal-delay-1">
-        Linux.<br/>
-        <span class="text-accent">Finally</span> the way<br/>
-        it should feel.
+        Your system,<br/>
+        <span class="text-accent">your way.</span>
       </h1>
 
       <p class="hero-sub reveal reveal-delay-2">
-        Archaeus is an Arch-based distribution powered by Hyprland, crafted
-        around a warm, minimal aesthetic and a visual control center — so you
-        configure your system by clicking, not typing obscure commands.
+        Archaeus is an Arch-based Linux distribution with Hyprland pre-configured
+        and a full GUI control center — install apps, switch desktop environments,
+        manage keybinds and appearance without ever editing a config file.
       </p>
 
       <div class="hero-actions reveal reveal-delay-3">
@@ -61,7 +58,7 @@
           Download ISO
         </a>
         <a href="/features/" class="btn btn-secondary btn-lg">
-          Explore Features
+          See Features
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -69,18 +66,19 @@
       </div>
 
       <div class="hero-stack reveal reveal-delay-4">
-        <span>Built with</span>
+        <span>Ships with</span>
         <div class="stack-pills">
-          <span class="stack-pill">Arch Linux</span>
           <span class="stack-pill">Hyprland</span>
-          <span class="stack-pill">Electron ACC</span>
-          <span class="stack-pill">Wayland</span>
+          <span class="stack-pill">Waybar</span>
+          <span class="stack-pill">Kitty</span>
           <span class="stack-pill">zsh + Starship</span>
+          <span class="stack-pill">yay (AUR)</span>
+          <span class="stack-pill">SDDM</span>
         </div>
       </div>
     </div>
 
-    <!-- Window mockup: ACC preview -->
+    <!-- ACC window mock — real tabs from source -->
     <div class="hero-visual reveal reveal-delay-2">
       <div class="window-mockup hero-window">
         <div class="window-titlebar">
@@ -91,36 +89,11 @@
         </div>
         <div class="window-body acc-mock">
           <div class="acc-sidebar">
-            <div class="acc-nav-item active">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <rect x="1" y="1" width="5" height="5" rx="1.2" fill="currentColor"/>
-                <rect x="8" y="1" width="5" height="5" rx="1.2" fill="currentColor" opacity="0.4"/>
-                <rect x="1" y="8" width="5" height="5" rx="1.2" fill="currentColor" opacity="0.4"/>
-                <rect x="8" y="8" width="5" height="5" rx="1.2" fill="currentColor" opacity="0.4"/>
-              </svg>
-              Packages
-            </div>
-            <div class="acc-nav-item">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <rect x="1" y="2" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
-                <path d="M4 7h6M4 9.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-              </svg>
-              Desktop
-            </div>
-            <div class="acc-nav-item">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
-                <circle cx="7" cy="7" r="2" fill="currentColor" opacity="0.5"/>
-              </svg>
-              Appearance
-            </div>
-            <div class="acc-nav-item">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M7 1v2M7 11v2M1 7h2M11 7h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
-                <circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.3" fill="none"/>
-              </svg>
-              Settings
-            </div>
+            <div class="acc-nav-item active">📦 Packages</div>
+            <div class="acc-nav-item">🖥️ Desktop</div>
+            <div class="acc-nav-item">🎨 Appearance</div>
+            <div class="acc-nav-item">🚀 Startup</div>
+            <div class="acc-nav-item">⌨️ Keybinds</div>
           </div>
           <div class="acc-content">
             <div class="acc-search">
@@ -131,44 +104,12 @@
               <span>Search packages…</span>
             </div>
             <div class="acc-apps">
-              <div class="acc-app installed">
-                <div class="acc-app-icon" style="background:#1a6ac8">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="white" opacity="0.9"><circle cx="7" cy="7" r="5.5"/></svg>
-                </div>
-                <span>Firefox</span>
-                <span class="acc-badge">Installed</span>
-              </div>
-              <div class="acc-app">
-                <div class="acc-app-icon" style="background:#1e7e34">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="white" opacity="0.9"><rect x="2" y="2" width="10" height="10" rx="2"/></svg>
-                </div>
-                <span>VS Code</span>
-              </div>
-              <div class="acc-app">
-                <div class="acc-app-icon" style="background:#5865f2">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="white" opacity="0.9"><circle cx="4.5" cy="7" r="2.5"/><circle cx="9.5" cy="7" r="2.5"/></svg>
-                </div>
-                <span>Discord</span>
-              </div>
-              <div class="acc-app installed">
-                <div class="acc-app-icon" style="background:#1db954">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="white" opacity="0.9"><circle cx="7" cy="7" r="5.5"/></svg>
-                </div>
-                <span>Spotify</span>
-                <span class="acc-badge">Installed</span>
-              </div>
-              <div class="acc-app">
-                <div class="acc-app-icon" style="background:#e44f26">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="white" opacity="0.9"><polygon points="7,2 12,12 2,12"/></svg>
-                </div>
-                <span>OBS</span>
-              </div>
-              <div class="acc-app">
-                <div class="acc-app-icon" style="background:#1a9fff">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="white" opacity="0.9"><rect x="2" y="4" width="10" height="6" rx="1.5"/></svg>
-                </div>
-                <span>Steam</span>
-              </div>
+              <div class="acc-app installed">🦊<span>Firefox</span><span class="acc-badge">✓</span></div>
+              <div class="acc-app">💬<span>Discord</span></div>
+              <div class="acc-app">💻<span>VS Code</span></div>
+              <div class="acc-app installed">🎵<span>Spotify</span><span class="acc-badge">✓</span></div>
+              <div class="acc-app">🎮<span>Steam</span></div>
+              <div class="acc-app">📹<span>OBS</span></div>
             </div>
           </div>
         </div>
@@ -178,13 +119,13 @@
   </div>
 </section>
 
-<!-- ── STATS BAR ─────────────────────────────────────────── -->
+<!-- Stats -->
 <div class="stats-bar">
   <div class="container">
     <div class="stats-inner">
       <div class="stat-item">
-        <span class="stat-num" data-count="120">0</span><span class="stat-unit">+</span>
-        <span class="stat-label">Pre-configured packages</span>
+        <span class="stat-num" data-count="42">0</span>
+        <span class="stat-label">Curated packages in ACC</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
@@ -193,27 +134,27 @@
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
-        <span class="stat-num" data-count="3">0</span>
-        <span class="stat-label">Desktop environments</span>
+        <span class="stat-num" data-count="130">0</span>
+        <span class="stat-label">Base packages in ISO</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
-        <span class="stat-num">0</span>
-        <span class="stat-label">Terminal skills required</span>
+        <span class="stat-num" data-count="7">0</span>
+        <span class="stat-label">Accent color presets</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── FEATURES OVERVIEW ─────────────────────────────────── -->
+<!-- Features grid -->
 <section>
   <div class="container">
     <div class="reveal">
-      <span class="section-label">What makes it different</span>
-      <h2 style="max-width:520px; margin-bottom:16px;">Power without the learning curve</h2>
+      <span class="section-label">What's included</span>
+      <h2 style="max-width:520px; margin-bottom:16px;">Everything set up. Nothing compromised.</h2>
       <p style="max-width:540px; font-size:17px; margin-bottom:56px;">
-        Archaeus keeps everything that makes Arch Linux great — rolling releases,
-        AUR access, bleeding-edge packages — and wraps it in a UI that makes sense.
+        Archaeus doesn't hide Arch Linux — it wraps the common tasks in a GUI
+        while leaving the full power of pacman, yay, and the terminal untouched.
       </p>
     </div>
 
@@ -226,7 +167,7 @@
           </svg>
         </div>
         <h4>Archaeus Control Center</h4>
-        <p>Install apps, switch desktop environments, tweak appearance and keybinds — all from a clean Electron GUI. No config file editing needed.</p>
+        <p>Five panels: install packages from a curated list of 42 apps, switch DEs, change accent colors, manage autostart, view keybinds. All running real shell commands under the hood.</p>
       </div>
 
       <div class="card reveal reveal-delay-2">
@@ -236,8 +177,8 @@
             <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h4>Hyprland by default</h4>
-        <p>Ships with a fully configured Hyprland compositor — rounded corners, blur, fluid animations, and a warm Waybar status bar ready out of the box.</p>
+        <h4>Hyprland, pre-configured</h4>
+        <p>12px rounding, 2-pass blur, amber borders, smooth animations, waybar with clock/audio/network/battery, and all keybinds wired up. Ready on first boot.</p>
       </div>
 
       <div class="card reveal reveal-delay-3">
@@ -245,11 +186,10 @@
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
             <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.5"/>
-            <path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
           </svg>
         </div>
-        <h4>Coffee-shop aesthetic</h4>
-        <p>Every pixel follows a warm dark palette — charcoal backgrounds, cream text, amber accents. Beautiful enough to use in public.</p>
+        <h4>Unified coffee-shop aesthetic</h4>
+        <p>Every component — ACC, Hyprland, Kitty, Waybar, SDDM — shares the same warm dark palette: <code>#1C1610</code> background, <code>#E8D5B0</code> cream text, <code>#C8A96E</code> amber accent.</p>
       </div>
 
       <div class="card reveal reveal-delay-1">
@@ -258,11 +198,21 @@
             <path d="M4 6l4 4-4 4M10 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h4>Full AUR access</h4>
-        <p>Under the hood it's still Arch. <code>yay</code> and <code>pacman</code> are fully available. Power users have everything they've always had.</p>
+        <h4>Full AUR via yay</h4>
+        <p>yay is pre-installed and used by the ACC internally. Open a terminal and use it directly — <code>yay -Syu</code>, <code>yay -Ss</code>, <code>yay -Rns</code> — all exactly as expected.</p>
       </div>
 
       <div class="card reveal reveal-delay-2">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2L12.5 8.5H19L13.5 12.5L15.5 19L10 15L4.5 19L6.5 12.5L1 8.5H7.5L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <h4>First-boot setup</h4>
+        <p>On first login the ACC auto-launches in setup mode. Pick your apps, set your accent color and wallpaper before you touch anything else. The <code>firstboot</code> flag is deleted after.</p>
+      </div>
+
+      <div class="card reveal reveal-delay-3">
         <div class="card-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <rect x="3" y="3" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
@@ -271,61 +221,55 @@
             <rect x="11" y="11" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/>
           </svg>
         </div>
-        <h4>Switch DEs visually</h4>
-        <p>Prefer KDE Plasma or GNOME? Select it in the Desktop tab and Archaeus installs, configures, and sets it as default — one click.</p>
-      </div>
-
-      <div class="card reveal reveal-delay-3">
-        <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M10 2L12.5 8.5H19L13.5 12.5L15.5 19L10 15L4.5 19L6.5 12.5L1 8.5H7.5L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-          </svg>
-        </div>
-        <h4>First-boot experience</h4>
-        <p>The ACC launches automatically on first boot, guiding you through app installation and personalization before you ever touch a terminal.</p>
+        <h4>Switch DEs, keep your data</h4>
+        <p>The Desktop panel installs KDE Plasma or GNOME and updates SDDM without touching your files. Switch back any time from the login screen session picker.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── ACC DEEP DIVE ─────────────────────────────────────── -->
+<!-- ACC deep dive -->
 <section class="acc-section">
   <div class="container">
     <div class="acc-feature-grid">
       <div class="acc-feature-text reveal">
         <span class="section-label">The Control Center</span>
-        <h2>Your system, <span class="text-accent">your way</span> — visually</h2>
-        <p>
-          The Archaeus Control Center (ACC) is the core differentiator. It's an
-          Electron app that wraps every common system task in a clean interface.
-        </p>
+        <h2>Five panels. <span class="text-accent">Everything</span> you need.</h2>
+        <p>The ACC is an Electron app that ships inside the ISO at <code>/opt/archaeus/acc</code>. Every action it takes is a real shell command — you can watch it in the log output.</p>
         <ul class="acc-feature-list">
           <li>
             <span class="list-dot"></span>
             <div>
-              <strong>Package manager GUI</strong>
-              <p>Grid of common apps. Click to install via <code>yay</code>. Search anything in the AUR.</p>
+              <strong>Packages</strong>
+              <p>42 apps across 6 categories (Browsers, Chat, Media, Dev, Gaming, Tools). Click to install/remove via <code>yay</code> with live progress streaming.</p>
             </div>
           </li>
           <li>
             <span class="list-dot"></span>
             <div>
-              <strong>Desktop switcher</strong>
-              <p>Live preview thumbnails of Hyprland, KDE Plasma, and GNOME.</p>
+              <strong>Desktop</strong>
+              <p>Switch between Hyprland, KDE Plasma, and GNOME. Reads current DE from <code>~/.config/archaeus/default-de</code>.</p>
             </div>
           </li>
           <li>
             <span class="list-dot"></span>
             <div>
-              <strong>Appearance editor</strong>
-              <p>Accent color picker, wallpaper gallery, font selector.</p>
+              <strong>Appearance</strong>
+              <p>7 accent color presets (Amber, Rose, Sage, Steel, Lavender, Teal, Peach), wallpaper picker, and font selector.</p>
             </div>
           </li>
           <li>
             <span class="list-dot"></span>
             <div>
-              <strong>Visual keybind editor</strong>
-              <p>Set Hyprland keybinds without touching <code>hyprland.conf</code>.</p>
+              <strong>Startup</strong>
+              <p>Toggle <code>~/.config/autostart/*.desktop</code> entries. Flips <code>Hidden=true</code> under the hood.</p>
+            </div>
+          </li>
+          <li>
+            <span class="list-dot"></span>
+            <div>
+              <strong>Keybinds</strong>
+              <p>Parses your live <code>hyprland.conf</code> and displays all binds as a readable table.</p>
             </div>
           </li>
         </ul>
@@ -337,6 +281,7 @@
         </a>
       </div>
 
+      <!-- Appearance mock with real 7 colors -->
       <div class="acc-feature-visual reveal reveal-delay-2">
         <div class="window-mockup">
           <div class="window-titlebar">
@@ -349,31 +294,26 @@
             <div class="ap-section">
               <span class="ap-label">Accent Color</span>
               <div class="ap-colors">
-                <div class="ap-color active" style="background:#c4874a"></div>
-                <div class="ap-color" style="background:#8b5cf6"></div>
-                <div class="ap-color" style="background:#57a65f"></div>
-                <div class="ap-color" style="background:#e5534b"></div>
-                <div class="ap-color" style="background:#3b82f6"></div>
+                <div class="ap-color active" style="background:#C8A96E" title="Amber"></div>
+                <div class="ap-color" style="background:#C87070" title="Rose"></div>
+                <div class="ap-color" style="background:#7A9E6E" title="Sage"></div>
+                <div class="ap-color" style="background:#6E8FB0" title="Steel"></div>
+                <div class="ap-color" style="background:#9B8EC4" title="Lavender"></div>
+                <div class="ap-color" style="background:#6EB0A8" title="Teal"></div>
+                <div class="ap-color" style="background:#C8906E" title="Peach"></div>
               </div>
             </div>
             <div class="ap-section">
               <span class="ap-label">Font</span>
-              <div class="ap-select">Inter — 10pt</div>
+              <div class="ap-select">Inter — system</div>
             </div>
             <div class="ap-section">
               <span class="ap-label">Wallpaper</span>
               <div class="ap-wallpapers">
-                <div class="ap-wp active" style="background:linear-gradient(135deg,#1c1a14,#2d2518)"></div>
+                <div class="ap-wp active" style="background:linear-gradient(135deg,#1C1610,#2E2416)"></div>
                 <div class="ap-wp" style="background:linear-gradient(135deg,#0d1a2e,#1a2d4a)"></div>
                 <div class="ap-wp" style="background:linear-gradient(135deg,#1a0d2e,#2e1a4a)"></div>
                 <div class="ap-wp" style="background:linear-gradient(135deg,#0d2e14,#1a4a22)"></div>
-              </div>
-            </div>
-            <div class="ap-section">
-              <span class="ap-label">Corner radius</span>
-              <div class="ap-slider-track">
-                <div class="ap-slider-fill" style="width:65%"></div>
-                <div class="ap-slider-thumb" style="left:65%"></div>
               </div>
             </div>
           </div>
@@ -383,52 +323,44 @@
   </div>
 </section>
 
-<!-- ── PHILOSOPHY ────────────────────────────────────────── -->
+<!-- Philosophy -->
 <section>
   <div class="container-narrow" style="text-align:center">
-    <span class="section-label reveal" style="justify-content:center; text-align:center">
-      <span style="display:none" class="section-label::before"></span>
-      Philosophy
-    </span>
-    <h2 class="reveal reveal-delay-1" style="margin-bottom:24px;">
-      The terminal isn't<br/>going anywhere.
-    </h2>
-    <p class="reveal reveal-delay-2" style="font-size:18px; line-height:1.8; margin-bottom:40px;">
-      Archaeus doesn't hide the terminal — it makes it optional.
-      Every visual action the ACC takes is a real shell command running under the hood.
-      Open a terminal and you'll see exactly what it did. Power users lose nothing;
-      everyone else gains everything.
+    <h2 class="reveal" style="margin-bottom:24px;">The terminal isn't going anywhere.</h2>
+    <p class="reveal reveal-delay-1" style="font-size:18px; line-height:1.8; margin-bottom:40px;">
+      Every click in the ACC runs a real shell command. Install Spotify and you'll see
+      <code>yay -S spotify</code> stream in the log. Set a keybind and it writes to
+      <code>hyprland.conf</code>. Nothing is hidden. Power users lose nothing —
+      everyone else gains a working system in minutes.
     </p>
-    <div class="window-mockup reveal reveal-delay-3" style="text-align:left">
+    <div class="window-mockup reveal reveal-delay-2" style="text-align:left">
       <div class="window-titlebar">
         <span class="window-dot dot-red"></span>
         <span class="window-dot dot-yellow"></span>
         <span class="window-dot dot-green"></span>
-        <span class="window-title">kitty — ~</span>
+        <span class="window-title">kitty — zsh</span>
       </div>
       <div class="window-body">
-        <pre><code><span style="color:#c4874a">archaeus</span><span style="color:#7a6d58">@</span><span style="color:#d4a862">machine</span> ~
-<span style="color:#57a65f">❯</span> <span style="color:#ede3d4">yay -S spotify</span>
-<span style="color:#7a6d58"># ↑ same command ACC ran when you clicked "Install"</span>
+        <pre><code><span style="color:#C8A96E">archaeus</span><span style="color:#8C7A58">@</span><span style="color:#d9b87a">machine</span> ~
+<span style="color:#7A9E6E">❯</span> <span style="color:#E8D5B0">yay -S discord</span>
+<span style="color:#8C7A58"># ↑ same command ACC ran when you clicked "Install"</span>
 
 resolving dependencies...
-:: (1/1) installing spotify  <span style="color:#c4874a">━━━━━━━━━━━━━━━━</span> 100%
-<span style="color:#57a65f">✓ Done.</span></code></pre>
+:: (1/1) installing discord  <span style="color:#C8A96E">━━━━━━━━━━━━━━━━</span> 100%
+<span style="color:#7A9E6E">✓ Done.</span></code></pre>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA ───────────────────────────────────────────────── -->
+<!-- CTA -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-card reveal">
       <div class="cta-glow"></div>
-      <span class="section-label" style="justify-content:center; margin-bottom:20px;">Get started</span>
       <h2 style="text-align:center; margin-bottom:16px;">Ready to try Archaeus?</h2>
       <p style="text-align:center; font-size:17px; max-width:480px; margin:0 auto 36px;">
-        Download the bootable ISO, flash it to a drive, and boot into a
-        fully configured system in minutes.
+        Download the ISO, flash it to a USB, boot — and the ACC opens automatically.
       </p>
       <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
         <a href="/download/" class="btn btn-primary btn-lg">
@@ -444,14 +376,13 @@ resolving dependencies...
   </div>
 </section>
 
-<!-- ── FOOTER ────────────────────────────────────────────── -->
 <footer>
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">
         <svg width="20" height="20" viewBox="0 0 26 26" fill="none">
-          <path d="M13 3 L22 22 H4 Z" stroke="#c4874a" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
-          <circle cx="13" cy="13" r="2.5" fill="#c4874a" opacity="0.7"/>
+          <path d="M13 3 L22 22 H4 Z" stroke="#C8A96E" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+          <circle cx="13" cy="13" r="2.5" fill="#C8A96E" opacity="0.7"/>
         </svg>
         Archaeus
       </div>

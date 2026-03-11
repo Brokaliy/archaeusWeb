@@ -4,645 +4,247 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Features — Archaeus</title>
-  <meta name="description" content="Archaeus Control Center, Hyprland, coffee-shop aesthetic, AUR access — everything that makes Archaeus different." />
   <link rel="stylesheet" href="../css/styles.css" />
   <style>
-    /* ── FEATURES PAGE ─────────────────────────────────── */
-    .features-hero { padding: 140px 0 80px; border-bottom: 1px solid var(--border); }
-
-    .feature-block {
-      padding: 80px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .feature-block:last-child { border-bottom: none; }
-
-    .feature-block-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-
-    .feature-block-inner.reverse { direction: rtl; }
-    .feature-block-inner.reverse > * { direction: ltr; }
-
-    .feature-text h3 {
-      margin-bottom: 14px;
-      font-size: 32px;
-    }
-
-    .feature-text > p {
-      font-size: 16px;
-      line-height: 1.75;
-      margin-bottom: 28px;
-    }
-
-    .feature-points {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .feature-points li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-2);
-      line-height: 1.6;
-    }
-
-    .feature-points li::before {
-      content: '';
-      display: block;
-      flex-shrink: 0;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-top: 8px;
-    }
-
-    .feature-visual-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-    }
-
-    /* Terminal block */
-    .term-block {
-      background: var(--bg-3);
-      padding: 0;
-    }
-
-    .term-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 16px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .term-body {
-      padding: 20px 24px;
-      font-family: var(--mono);
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .term-prompt { color: #c4874a; }
-    .term-cmd    { color: var(--text); }
-    .term-out    { color: var(--text-3); }
-    .term-green  { color: #57a65f; }
-    .term-blue   { color: #3b82f6; }
-
-    /* DE switcher mock */
-    .de-grid {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .de-card {
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      transition: border-color 0.15s;
-    }
-
-    .de-card.active { border-color: var(--accent); }
-
-    .de-preview {
-      height: 60px;
-    }
-
-    .de-label {
-      padding: 8px;
-      font-size: 11px;
-      font-weight: 600;
-      text-align: center;
-      color: var(--text-2);
-      background: var(--surface-2);
-    }
-
-    .de-active-badge {
-      font-size: 10px;
-      color: var(--accent);
-    }
-
-    /* Keybind mock */
-    .kb-list {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .kb-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 12px;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-    }
-
-    .kb-action { font-size: 13px; color: var(--text-2); }
-
-    .kb-keys {
-      display: flex;
-      gap: 4px;
-    }
-
-    .kb-key {
-      font-family: var(--mono);
-      font-size: 11px;
-      padding: 2px 7px;
-      background: var(--surface-2);
-      border: 1px solid var(--border-2);
-      border-radius: 4px;
-      color: var(--text);
-    }
-
-    /* Packages mock */
-    .pkg-header {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pkg-search {
-      flex: 1;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 7px 12px;
-      font-size: 12px;
-      color: var(--text-3);
-    }
-
-    .pkg-grid {
-      padding: 16px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
-
-    .pkg-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      padding: 12px 8px;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      font-size: 11px;
-      color: var(--text-3);
-      text-align: center;
-    }
-
-    .pkg-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .pkg-installed {
-      font-size: 9px;
-      color: #57a65f;
-      font-weight: 600;
-    }
-
-    /* Hyprland cfg mock */
-    .hypr-cfg {
-      padding: 20px 24px;
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 1.9;
-    }
-
-    .cfg-comment { color: var(--text-3); }
-    .cfg-key     { color: var(--accent-2); }
-    .cfg-eq      { color: var(--text-3); }
-    .cfg-val     { color: #57a65f; }
-    .cfg-num     { color: #3b82f6; }
-
-    /* ── TECH STACK SECTION ──────────────────────────────── */
-    .tech-stack-section {
-      background: var(--bg-2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .tech-stack-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 48px;
-    }
-
-    .tech-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-    }
-
-    .tech-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .tech-role {
-      font-size: 12px;
-      color: var(--accent-2);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .tech-desc {
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 900px) {
-      .feature-block-inner { grid-template-columns: 1fr; gap: 40px; }
-      .feature-block-inner.reverse { direction: ltr; }
-      .tech-stack-grid { grid-template-columns: repeat(2, 1fr); }
-      .de-grid { grid-template-columns: repeat(3, 1fr); }
-      .pkg-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    @media (max-width: 640px) {
-      .tech-stack-grid { grid-template-columns: 1fr; }
-      .de-grid { grid-template-columns: repeat(2, 1fr); }
-      .pkg-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    .page-hero{padding:140px 0 80px;border-bottom:1px solid var(--border)}
+    .fb{padding:80px 0;border-bottom:1px solid var(--border)}
+    .fb:last-child{border-bottom:none}
+    .fbi{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+    .fbi.rev{direction:rtl}.fbi.rev>*{direction:ltr}
+    .ft h3{margin-bottom:14px;font-size:32px}
+    .ft>p{font-size:16px;line-height:1.75;margin-bottom:28px}
+    .fp{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .fp li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text-2);line-height:1.6}
+    .fp li::before{content:"";display:block;flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:8px}
+    .fvb{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden}
+    .pkg-grid{padding:8px 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .pkg-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);font-size:10px;color:var(--text-3);text-align:center}
+    .em{font-size:18px}
+    .pkg-ok{font-size:9px;color:#7A9E6E;font-weight:700}
+    .pkg-cat{padding:10px 14px 2px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+    .de-grid{padding:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .de-card{border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden}
+    .de-card.on{border-color:var(--accent)}
+    .de-pre{height:50px;display:flex;align-items:center;justify-content:center;font-size:16px}
+    .de-lbl{padding:6px;font-size:10px;font-weight:600;text-align:center;color:var(--text-2);background:var(--surface-2)}
+    .de-act{font-size:9px;color:var(--accent)}
+    .kb-list{padding:10px;display:flex;flex-direction:column;gap:5px}
+    .kb-row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-sm)}
+    .kb-act{font-size:12px;color:var(--text-2)}
+    .kb-keys{display:flex;gap:3px}
+    .kb-key{font-family:var(--mono);font-size:10px;padding:1px 5px;background:var(--surface-2);border:1px solid var(--border-2);border-radius:3px;color:var(--text)}
+    .sw{width:30px;height:30px;border-radius:50%;border:2px solid transparent}
+    .sw.on{border-color:var(--text)}
+    .sw-item{display:flex;flex-direction:column;align-items:center;gap:3px}
+    .sw-name{font-size:9px;color:var(--text-3)}
+    .lbl-xs{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;display:block}
+    .sl{padding:12px;display:flex;flex-direction:column;gap:7px}
+    .sl-row{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-sm)}
+    .sl-name{font-size:12px;color:var(--text-2)}
+    .tog{width:28px;height:16px;border-radius:8px;border:1px solid var(--border-2);position:relative;flex-shrink:0}
+    .tog.on{background:var(--accent-dim);border-color:var(--accent)}
+    .tog-d{width:10px;height:10px;border-radius:50%;background:var(--text-3);position:absolute;top:2px;left:2px}
+    .tog.on .tog-d{background:var(--accent);left:14px}
+    .ts-sec{background:var(--bg-2);border-top:1px solid var(--border);padding:80px 0}
+    .ts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+    .tc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px}
+    .tc-name{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+    .tc-role{font-size:11px;color:var(--accent-2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+    .tc-desc{font-size:13px;line-height:1.6}
+    @media(max-width:900px){.fbi{grid-template-columns:1fr;gap:40px}.fbi.rev{direction:ltr}.ts-grid{grid-template-columns:repeat(2,1fr)}}
   </style>
 </head>
 <body>
-
-<!-- ── NAV ──────────────────────────────────────────────── -->
 <nav>
   <a href="/" class="nav-logo">
-    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-      <path d="M13 3 L22 22 H4 Z" stroke="#c4874a" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
-      <path d="M7.5 17 H18.5" stroke="#c4874a" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
-      <circle cx="13" cy="13" r="2.5" fill="#c4874a" opacity="0.7"/>
-    </svg>
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 3 L22 22 H4 Z" stroke="#C8A96E" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M7.5 17 H18.5" stroke="#C8A96E" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/><circle cx="13" cy="13" r="2.5" fill="#C8A96E" opacity="0.7"/></svg>
     Archaeus
   </a>
   <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/features/">Features</a></li>
-    <li><a href="/download/">Download</a></li>
-    <li><a href="/docs/">Docs</a></li>
-    <li><a href="/about/">About</a></li>
+    <li><a href="/">Home</a></li><li><a href="/features/">Features</a></li><li><a href="/download/">Download</a></li><li><a href="/docs/">Docs</a></li><li><a href="/about/">About</a></li>
   </ul>
   <a href="/download/" class="btn btn-primary btn-sm nav-cta">Download ISO</a>
 </nav>
 
-<!-- ── PAGE HERO ─────────────────────────────────────────── -->
-<section class="features-hero">
+<section class="page-hero">
   <div class="container">
-    <span class="section-label reveal">Everything Archaeus offers</span>
+    <span class="section-label reveal">What is inside</span>
     <h1 class="reveal reveal-delay-1">Features</h1>
-    <p class="reveal reveal-delay-2">
-      A full Arch Linux system with a control center that makes it accessible —
-      without sacrificing a single power user feature.
-    </p>
+    <p class="reveal reveal-delay-2">A full Arch Linux system with a five-panel control center. Every power-user tool is still there.</p>
   </div>
 </section>
 
-<!-- ── FEATURE: ACC ─────────────────────────────────────── -->
-<section class="feature-block">
-  <div class="container">
-    <div class="feature-block-inner">
-      <div class="feature-text reveal">
-        <span class="section-label">Core feature</span>
-        <h3>Archaeus Control Center</h3>
-        <p>
-          The ACC is a native Electron application that ships as part of the OS.
-          It provides a GUI layer over the most common system administration tasks —
-          no terminal knowledge required.
-        </p>
-        <ul class="feature-points">
-          <li>Install packages from a curated grid or search the entire AUR</li>
-          <li>Switch between Hyprland, KDE Plasma, and GNOME with one click</li>
-          <li>Visual keybind editor that writes to <code>hyprland.conf</code></li>
-          <li>Appearance panel for accent color, wallpaper, fonts, and corner radius</li>
-          <li>Startup manager to toggle autostart applications</li>
-        </ul>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="feature-visual-box">
-          <div class="pkg-header">
-            <div class="pkg-search">🔍  Search packages…</div>
-          </div>
-          <div class="pkg-grid">
-            <div class="pkg-item">
-              <div class="pkg-icon" style="background:#1a6ac8">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="6"/></svg>
-              </div>
-              Firefox
-              <span class="pkg-installed">✓ Installed</span>
-            </div>
-            <div class="pkg-item">
-              <div class="pkg-icon" style="background:#1e7e34">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><rect x="2" y="2" width="12" height="12" rx="2.5"/></svg>
-              </div>
-              VS Code
-            </div>
-            <div class="pkg-item">
-              <div class="pkg-icon" style="background:#5865f2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><circle cx="5" cy="8" r="3"/><circle cx="11" cy="8" r="3"/></svg>
-              </div>
-              Discord
-            </div>
-            <div class="pkg-item">
-              <div class="pkg-icon" style="background:#1db954">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="6"/></svg>
-              </div>
-              Spotify
-              <span class="pkg-installed">✓ Installed</span>
-            </div>
-            <div class="pkg-item">
-              <div class="pkg-icon" style="background:#e44f26">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><polygon points="8,2 14,14 2,14"/></svg>
-              </div>
-              OBS
-            </div>
-            <div class="pkg-item">
-              <div class="pkg-icon" style="background:#1a9fff">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><rect x="1" y="4" width="14" height="8" rx="2"/></svg>
-              </div>
-              Steam
-            </div>
-            <div class="pkg-item">
-              <div class="pkg-icon" style="background:#ff6b35">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="5"/></svg>
-              </div>
-              Blender
-            </div>
-            <div class="pkg-item">
-              <div class="pkg-icon" style="background:#6b21a8">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><rect x="3" y="3" width="10" height="10" rx="2"/></svg>
-              </div>
-              VLC
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FEATURE: HYPRLAND ─────────────────────────────────── -->
-<section class="feature-block">
-  <div class="container">
-    <div class="feature-block-inner reverse">
-      <div class="feature-text reveal">
-        <span class="section-label">Default compositor</span>
-        <h3>Hyprland, pre-configured</h3>
-        <p>
-          Hyprland is a Wayland compositor known for smooth animations and a highly
-          customisable tiling layout. Archaeus ships a complete, opinionated config
-          that looks great on first boot — no config editing required.
-        </p>
-        <ul class="feature-points">
-          <li>Rounded corners and subtle window blur</li>
-          <li>Smooth animations (fade, slide, workspaces)</li>
-          <li>Custom Waybar with clock, workspace indicators, media info</li>
-          <li>Sensible default keybinds (overrideable in ACC)</li>
-          <li>SDDM login screen themed to match</li>
-        </ul>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="feature-visual-box term-block">
-          <div class="term-header">
-            <span class="window-dot dot-red"></span>
-            <span class="window-dot dot-yellow"></span>
-            <span class="window-dot dot-green"></span>
-            <span class="window-title">~/.config/hypr/hyprland.conf</span>
-          </div>
-          <div class="hypr-cfg">
-            <div><span class="cfg-comment"># Archaeus default — warm theme</span></div>
-            <div>&nbsp;</div>
-            <div><span class="cfg-key">general</span><span class="cfg-eq"> {</span></div>
-            <div>&nbsp;&nbsp;<span class="cfg-key">gaps_in</span>    <span class="cfg-eq">=</span> <span class="cfg-num">5</span></div>
-            <div>&nbsp;&nbsp;<span class="cfg-key">gaps_out</span>   <span class="cfg-eq">=</span> <span class="cfg-num">12</span></div>
-            <div>&nbsp;&nbsp;<span class="cfg-key">border_size</span><span class="cfg-eq">=</span> <span class="cfg-num">1</span></div>
-            <div>&nbsp;&nbsp;<span class="cfg-key">col.active_border</span> <span class="cfg-eq">=</span> <span class="cfg-val">rgba(c4874aff)</span></div>
-            <div>}</div>
-            <div>&nbsp;</div>
-            <div><span class="cfg-key">decoration</span><span class="cfg-eq"> {</span></div>
-            <div>&nbsp;&nbsp;<span class="cfg-key">rounding</span>   <span class="cfg-eq">=</span> <span class="cfg-num">12</span></div>
-            <div>&nbsp;&nbsp;<span class="cfg-key">blur</span><span class="cfg-eq"> {</span></div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cfg-key">enabled</span> <span class="cfg-eq">=</span> <span class="cfg-val">true</span></div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cfg-key">size</span>    <span class="cfg-eq">=</span> <span class="cfg-num">8</span></div>
-            <div>&nbsp;&nbsp;<span class="cfg-eq">}</span></div>
-            <div>}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FEATURE: DESKTOP SWITCH ───────────────────────────── -->
-<section class="feature-block">
-  <div class="container">
-    <div class="feature-block-inner">
-      <div class="feature-text reveal">
-        <span class="section-label">Desktop environments</span>
-        <h3>Switch DEs without reinstalling</h3>
-        <p>
-          Not a Hyprland fan? The Desktop tab in ACC lets you install and switch to
-          KDE Plasma or GNOME. Archaeus installs the packages, sets the session
-          default in SDDM, and you're done.
-        </p>
-        <ul class="feature-points">
-          <li>Hyprland — fast, tiling, Wayland-native</li>
-          <li>KDE Plasma — feature-rich, familiar, highly customisable</li>
-          <li>GNOME — clean, modern, touch-friendly workflow</li>
-          <li>Live preview thumbnails before switching</li>
-          <li>Revert at any time without reinstalling the OS</li>
-        </ul>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="feature-visual-box">
-          <div class="de-grid">
-            <div class="de-card active">
-              <div class="de-preview" style="background:linear-gradient(135deg,#1c1a14 0%, #2d2518 100%);">
-                <div style="padding:8px;font-size:10px;color:#c4874a;font-family:var(--mono);">⬛ ⬛ ⬛</div>
-              </div>
-              <div class="de-label">Hyprland <span class="de-active-badge">• Active</span></div>
-            </div>
-            <div class="de-card">
-              <div class="de-preview" style="background:linear-gradient(135deg,#1a2035 0%, #2a3a5a 100%);">
-                <div style="padding:8px;font-size:10px;color:#7aa2d4;font-family:var(--mono);">▬▬▬</div>
-              </div>
-              <div class="de-label">KDE Plasma</div>
-            </div>
-            <div class="de-card">
-              <div class="de-preview" style="background:linear-gradient(135deg,#1a1a2e 0%, #2e2e4e 100%);">
-                <div style="padding:8px;font-size:10px;color:#9b9bd4;font-family:var(--mono);">⬤ ⬤</div>
-              </div>
-              <div class="de-label">GNOME</div>
-            </div>
-          </div>
-          <div style="padding:0 16px 16px;">
-            <button class="btn btn-primary" style="width:100%;justify-content:center;border-radius:var(--radius-sm)">
-              Apply Hyprland
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FEATURE: KEYBINDS ─────────────────────────────────── -->
-<section class="feature-block">
-  <div class="container">
-    <div class="feature-block-inner reverse">
-      <div class="feature-text reveal">
-        <span class="section-label">Keybinds</span>
-        <h3>Visual keybind editor</h3>
-        <p>
-          Hyprland keybinds are normally configured by hand in <code>hyprland.conf</code>.
-          The ACC Keybinds tab abstracts this — click an action, press your desired
-          combo, and it writes the config for you.
-        </p>
-        <ul class="feature-points">
-          <li>All default Archaeus actions listed and re-mappable</li>
-          <li>Changes apply without restarting Hyprland</li>
-          <li>Conflict detection prevents binding the same combo twice</li>
-          <li>Export / reset to defaults at any time</li>
-        </ul>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="feature-visual-box">
-          <div class="kb-list">
-            <div class="kb-row">
-              <span class="kb-action">Launch Terminal</span>
-              <div class="kb-keys">
-                <span class="kb-key">SUPER</span>
-                <span class="kb-key">Return</span>
-              </div>
-            </div>
-            <div class="kb-row">
-              <span class="kb-action">App Launcher</span>
-              <div class="kb-keys">
-                <span class="kb-key">SUPER</span>
-                <span class="kb-key">D</span>
-              </div>
-            </div>
-            <div class="kb-row">
-              <span class="kb-action">Kill Window</span>
-              <div class="kb-keys">
-                <span class="kb-key">SUPER</span>
-                <span class="kb-key">Q</span>
-              </div>
-            </div>
-            <div class="kb-row">
-              <span class="kb-action">Workspace 1</span>
-              <div class="kb-keys">
-                <span class="kb-key">SUPER</span>
-                <span class="kb-key">1</span>
-              </div>
-            </div>
-            <div class="kb-row">
-              <span class="kb-action">Screenshot</span>
-              <div class="kb-keys">
-                <span class="kb-key">Print</span>
-              </div>
-            </div>
-            <div class="kb-row" style="border-color:var(--accent); background:var(--accent-dim);">
-              <span class="kb-action" style="color:var(--text);">Toggle Float</span>
-              <div class="kb-keys">
-                <span style="font-size:11px;color:var(--accent);">Press a key combo…</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── TECH STACK ─────────────────────────────────────────── -->
-<section class="tech-stack-section">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">Under the hood</span>
-      <h2>The tech stack</h2>
-    </div>
-    <div class="tech-stack-grid">
-      <div class="tech-card reveal reveal-delay-1">
-        <div class="tech-role">Base</div>
-        <div class="tech-name">Arch Linux</div>
-        <p class="tech-desc">Rolling release, minimal base, full AUR access via <code>yay</code>. Built with <code>archiso</code> into a bootable ISO.</p>
-      </div>
-      <div class="tech-card reveal reveal-delay-2">
-        <div class="tech-role">Compositor</div>
-        <div class="tech-name">Hyprland</div>
-        <p class="tech-desc">Wayland compositor with fluid animations, tiling layouts, blur, and rounded corners. Custom Waybar status bar.</p>
-      </div>
-      <div class="tech-card reveal reveal-delay-3">
-        <div class="tech-role">Control Center</div>
-        <div class="tech-name">Electron ACC</div>
-        <p class="tech-desc">Custom Electron app providing GUI over package management, DE switching, appearance, and keybinds.</p>
-      </div>
-      <div class="tech-card reveal reveal-delay-4">
-        <div class="tech-role">Terminal</div>
-        <div class="tech-name">Kitty + zsh</div>
-        <p class="tech-desc">Kitty terminal with GPU acceleration, coffee-shop color theme, and Starship prompt for a clean shell experience.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FOOTER ────────────────────────────────────────────── -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <svg width="20" height="20" viewBox="0 0 26 26" fill="none">
-          <path d="M13 3 L22 22 H4 Z" stroke="#c4874a" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
-          <circle cx="13" cy="13" r="2.5" fill="#c4874a" opacity="0.7"/>
-        </svg>
-        Archaeus
-      </div>
-      <ul class="footer-links">
-        <li><a href="/features/">Features</a></li>
-        <li><a href="/download/">Download</a></li>
-        <li><a href="/docs/">Docs</a></li>
-        <li><a href="/about/">About</a></li>
-        <li><a href="https://github.com/Brokaliy/archaeus" target="_blank">GitHub</a></li>
+<!-- Packages -->
+<section class="fb">
+  <div class="container"><div class="fbi">
+    <div class="ft reveal">
+      <span class="section-label">ACC — Packages</span>
+      <h3>42 apps. One click each.</h3>
+      <p>Six categories, 42 curated apps. Click to install or remove — ACC streams <code>yay -S</code> or <code>yay -Rns</code> output live in the log. The search bar hits the full AUR.</p>
+      <ul class="fp">
+        <li>Browsers: Firefox, Chromium, Brave, Tor Browser, Vivaldi</li>
+        <li>Chat: Discord, Slack, Telegram, Signal, Element</li>
+        <li>Media: Spotify, VLC, mpv, OBS, Kdenlive, GIMP, Inkscape, Audacity</li>
+        <li>Dev: VS Code, Neovim, Zed, JetBrains Toolbox, Docker, Podman, Insomnia</li>
+        <li>Gaming: Steam, Lutris, Heroic, Bottles, Mangohud</li>
+        <li>Tools: Thunar, Ark, Bitwarden, Obsidian, LibreOffice, Flameshot, Remmina</li>
       </ul>
-      <span class="footer-copy">© 2026 Archaeus · archaeus.7n7.dev</span>
+    </div>
+    <div class="reveal reveal-delay-2"><div class="fvb">
+      <div class="pkg-cat">Browsers</div><div class="pkg-grid">
+        <div class="pkg-item"><span class="em">🦊</span>Firefox<span class="pkg-ok">installed</span></div>
+        <div class="pkg-item"><span class="em">🌐</span>Chromium</div>
+        <div class="pkg-item"><span class="em">🦁</span>Brave</div>
+      </div>
+      <div class="pkg-cat">Chat</div><div class="pkg-grid">
+        <div class="pkg-item"><span class="em">💬</span>Discord</div>
+        <div class="pkg-item"><span class="em">📱</span>Telegram</div>
+        <div class="pkg-item"><span class="em">🔒</span>Signal</div>
+      </div>
+      <div class="pkg-cat">Dev</div><div class="pkg-grid">
+        <div class="pkg-item"><span class="em">💻</span>VS Code</div>
+        <div class="pkg-item"><span class="em">📝</span>Neovim</div>
+        <div class="pkg-item"><span class="em">🐋</span>Docker</div>
+      </div>
+      <div class="pkg-cat">Gaming</div><div class="pkg-grid">
+        <div class="pkg-item"><span class="em">🎮</span>Steam</div>
+        <div class="pkg-item"><span class="em">🦸</span>Lutris</div>
+        <div class="pkg-item"><span class="em">🍾</span>Bottles</div>
+      </div>
+    </div></div>
+  </div></div>
+</section>
+
+<!-- Desktop -->
+<section class="fb">
+  <div class="container"><div class="fbi rev">
+    <div class="ft reveal">
+      <span class="section-label">ACC — Desktop</span>
+      <h3>Switch DEs without reinstalling.</h3>
+      <p>Reads the current DE from <code>~/.config/archaeus/default-de</code>, shows three preview cards, installs packages, updates SDDM. Revert any time from the login screen session picker.</p>
+      <ul class="fp">
+        <li>Hyprland — default, Wayland-native tiling compositor</li>
+        <li>KDE Plasma — full-featured, highly customisable</li>
+        <li>GNOME — clean, modern, great touchpad workflow</li>
+        <li>Your home directory is never touched on switch</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-2"><div class="fvb">
+      <div class="de-grid">
+        <div class="de-card on"><div class="de-pre" style="background:linear-gradient(135deg,#1C1610,#2E2416)">⬛</div><div class="de-lbl">Hyprland <span class="de-act">active</span></div></div>
+        <div class="de-card"><div class="de-pre" style="background:linear-gradient(135deg,#1a2035,#2a3a5a)">🔷</div><div class="de-lbl">KDE Plasma</div></div>
+        <div class="de-card"><div class="de-pre" style="background:linear-gradient(135deg,#1a1a2e,#2e2e4e)">⬤</div><div class="de-lbl">GNOME</div></div>
+      </div>
+      <div style="padding:0 12px 12px"><button class="btn btn-primary" style="width:100%;justify-content:center;border-radius:var(--radius-sm);font-size:12px">Apply Hyprland</button></div>
+    </div></div>
+  </div></div>
+</section>
+
+<!-- Appearance -->
+<section class="fb">
+  <div class="container"><div class="fbi">
+    <div class="ft reveal">
+      <span class="section-label">ACC — Appearance</span>
+      <h3>7 accent colors. Your wallpaper. Your font.</h3>
+      <p>Amber, Rose, Sage, Steel, Lavender, Teal, Peach. Changes apply live to Hyprland borders, Waybar, and the ACC itself. Wallpaper updates hyprpaper.conf and restarts hyprpaper.</p>
+      <ul class="fp">
+        <li>7 named accent presets with live preview</li>
+        <li>Wallpaper: local file picker, updates hyprpaper, instant apply</li>
+        <li>Fonts: Inter, JetBrains Mono, Noto Sans, Geist</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-2"><div class="fvb" style="padding:18px">
+      <span class="lbl-xs">Accent Color</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+        <div class="sw-item"><div class="sw on" style="background:#C8A96E;border-color:var(--text)"></div><div class="sw-name">Amber</div></div>
+        <div class="sw-item"><div class="sw" style="background:#C87070"></div><div class="sw-name">Rose</div></div>
+        <div class="sw-item"><div class="sw" style="background:#7A9E6E"></div><div class="sw-name">Sage</div></div>
+        <div class="sw-item"><div class="sw" style="background:#6E8FB0"></div><div class="sw-name">Steel</div></div>
+        <div class="sw-item"><div class="sw" style="background:#9B8EC4"></div><div class="sw-name">Lavender</div></div>
+        <div class="sw-item"><div class="sw" style="background:#6EB0A8"></div><div class="sw-name">Teal</div></div>
+        <div class="sw-item"><div class="sw" style="background:#C8906E"></div><div class="sw-name">Peach</div></div>
+      </div>
+      <span class="lbl-xs">Font</span>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="padding:7px 11px;background:var(--accent-dim);border:1px solid var(--accent);border-radius:var(--radius-sm);font-size:12px;color:var(--text)">Inter</div>
+        <div style="padding:7px 11px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-3)">JetBrains Mono</div>
+        <div style="padding:7px 11px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-3)">Noto Sans</div>
+        <div style="padding:7px 11px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-3)">Geist</div>
+      </div>
+    </div></div>
+  </div></div>
+</section>
+
+<!-- Startup -->
+<section class="fb">
+  <div class="container"><div class="fbi rev">
+    <div class="ft reveal">
+      <span class="section-label">ACC — Startup</span>
+      <h3>Autostart managed with toggles.</h3>
+      <p>Scans <code>~/.config/autostart/</code> for <code>.desktop</code> files. Toggling off sets <code>Hidden=true</code> — no files deleted, fully reversible.</p>
+      <ul class="fp">
+        <li>Reads real .desktop autostart entries</li>
+        <li>Toggle is instant — no restart needed</li>
+        <li>Fully reversible — just toggle back on</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-2"><div class="fvb"><div class="sl">
+      <div class="sl-row"><span class="sl-name">🌅 hyprpaper</span><div class="tog on"><div class="tog-d"></div></div></div>
+      <div class="sl-row"><span class="sl-name">📊 Waybar</span><div class="tog on"><div class="tog-d"></div></div></div>
+      <div class="sl-row"><span class="sl-name">🔔 dunst</span><div class="tog on"><div class="tog-d"></div></div></div>
+      <div class="sl-row"><span class="sl-name">📋 wl-clip-persist</span><div class="tog"><div class="tog-d"></div></div></div>
+      <div class="sl-row"><span class="sl-name">🔑 polkit-gnome</span><div class="tog on"><div class="tog-d"></div></div></div>
+      <div class="sl-row"><span class="sl-name">💤 hypridle</span><div class="tog on"><div class="tog-d"></div></div></div>
+    </div></div></div>
+  </div></div>
+</section>
+
+<!-- Keybinds -->
+<section class="fb">
+  <div class="container"><div class="fbi">
+    <div class="ft reveal">
+      <span class="section-label">ACC — Keybinds</span>
+      <h3>All your binds, parsed live.</h3>
+      <p>Reads your live <code>hyprland.conf</code> and displays every <code>bind = ...</code> line as a readable table. The default Archaeus config has full coverage out of the box.</p>
+      <ul class="fp">
+        <li>Super/Mod key for all window management</li>
+        <li>vim-style focus: h/j/k/l alongside arrow keys</li>
+        <li>XF86 media, volume, brightness keys pre-wired</li>
+        <li>Workspaces 1–10, Super+Shift to move windows</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-2"><div class="fvb"><div class="kb-list">
+      <div class="kb-row"><span class="kb-act">Open terminal</span><div class="kb-keys"><span class="kb-key">SUPER</span><span class="kb-key">Return</span></div></div>
+      <div class="kb-row"><span class="kb-act">App launcher (rofi)</span><div class="kb-keys"><span class="kb-key">SUPER</span><span class="kb-key">R</span></div></div>
+      <div class="kb-row"><span class="kb-act">Kill window</span><div class="kb-keys"><span class="kb-key">SUPER</span><span class="kb-key">Q</span></div></div>
+      <div class="kb-row"><span class="kb-act">Open ACC</span><div class="kb-keys"><span class="kb-key">SUPER</span><span class="kb-key">A</span></div></div>
+      <div class="kb-row"><span class="kb-act">File manager</span><div class="kb-keys"><span class="kb-key">SUPER</span><span class="kb-key">E</span></div></div>
+      <div class="kb-row"><span class="kb-act">Screenshot</span><div class="kb-keys"><span class="kb-key">Print</span></div></div>
+      <div class="kb-row"><span class="kb-act">Screenshot region</span><div class="kb-keys"><span class="kb-key">SUPER</span><span class="kb-key">Print</span></div></div>
+      <div class="kb-row"><span class="kb-act">Clipboard history</span><div class="kb-keys"><span class="kb-key">SUPER</span><span class="kb-key">V</span></div></div>
+      <div class="kb-row"><span class="kb-act">Toggle float</span><div class="kb-keys"><span class="kb-key">SUPER</span><span class="kb-key">SHIFT</span><span class="kb-key">V</span></div></div>
+    </div></div></div>
+  </div></div>
+</section>
+
+<!-- Tech stack -->
+<section class="ts-sec">
+  <div class="container">
+    <div class="reveal"><span class="section-label">Under the hood</span><h2>The stack</h2></div>
+    <div class="ts-grid">
+      <div class="tc reveal reveal-delay-1"><div class="tc-role">Base</div><div class="tc-name">Arch Linux</div><p class="tc-desc">Rolling release, 130 packages, archiso build. BIOS + UEFI. TUI installer with disk partitioning, user creation, and GRUB.</p></div>
+      <div class="tc reveal reveal-delay-2"><div class="tc-role">Compositor</div><div class="tc-name">Hyprland</div><p class="tc-desc">12px rounding, 8px 2-pass blur, #C8A96E amber borders, smooth bezier animations. Waybar: clock, audio, bluetooth, network, battery, ACC icon.</p></div>
+      <div class="tc reveal reveal-delay-3"><div class="tc-role">Control Center</div><div class="tc-name">Electron ACC</div><p class="tc-desc">900x650 frameless Electron window. IPC handlers: yay wrapper, DE switching, hyprpaper, autostart .desktop files, hyprland.conf bind parser.</p></div>
+      <div class="tc reveal reveal-delay-4"><div class="tc-role">Terminal</div><div class="tc-name">Kitty + zsh</div><p class="tc-desc">JetBrains Mono Nerd Font 13px, 92% bg opacity, 10k line scrollback. Zsh with autosuggestions, syntax-highlight, Starship prompt in amber theme.</p></div>
     </div>
   </div>
-</footer>
+</section>
 
+<footer><div class="container"><div class="footer-inner">
+  <div class="footer-logo"><svg width="20" height="20" viewBox="0 0 26 26" fill="none"><path d="M13 3 L22 22 H4 Z" stroke="#C8A96E" stroke-width="1.8" fill="none" stroke-linejoin="round"/><circle cx="13" cy="13" r="2.5" fill="#C8A96E" opacity="0.7"/></svg>Archaeus</div>
+  <ul class="footer-links"><li><a href="/features/">Features</a></li><li><a href="/download/">Download</a></li><li><a href="/docs/">Docs</a></li><li><a href="/about/">About</a></li><li><a href="https://github.com/Brokaliy/archaeus" target="_blank">GitHub</a></li></ul>
+  <span class="footer-copy">2026 Archaeus · archaeus.7n7.dev</span>
+</div></div></footer>
 <script src="../js/main.js"></script>
 </body>
 </html>

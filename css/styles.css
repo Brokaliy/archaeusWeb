@@ -6,23 +6,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg:         #111009;
-  --bg-2:       #181510;
-  --bg-3:       #201c16;
-  --surface:    #272118;
-  --surface-2:  #302a1f;
-  --surface-3:  #3a3326;
-  --border:     #3d3728;
-  --border-2:   #4d4535;
+  --bg:         #1C1610;
+  --bg-2:       #241C12;
+  --bg-3:       #2E2416;
+  --surface:    #382C18;
+  --surface-2:  #423220;
+  --surface-3:  #4E3D28;
+  --border:     #4A3C28;
+  --border-2:   #5C4E32;
 
-  --text:       #ede3d4;
-  --text-2:     #b5a48a;
-  --text-3:     #7a6d58;
+  --text:       #E8D5B0;
+  --text-2:     #C4A878;
+  --text-3:     #8C7A58;
 
-  --accent:     #c4874a;
-  --accent-2:   #d9a06a;
-  --accent-dim: rgba(196, 135, 74, 0.12);
-  --accent-glow:rgba(196, 135, 74, 0.08);
+  --accent:     #C8A96E;
+  --accent-2:   #d9b87a;
+  --accent-dim: rgba(200, 169, 110, 0.12);
+  --accent-glow:rgba(200, 169, 110, 0.08);
 
   --radius-sm:  6px;
   --radius:     12px;
@@ -80,7 +80,7 @@ button { cursor: pointer; font-family: var(--font); }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
 
 /* ── SELECTION ───────────────────────────────────────────── */
-::selection { background: rgba(196, 135, 74, 0.3); color: var(--text); }
+::selection { background: rgba(200, 169, 110, 0.3); color: var(--text); }
 
 /* ═══════════════════════════════════════════════════════════
    NAVIGATION
@@ -176,7 +176,7 @@ nav.scrolled {
 .btn-primary:hover {
   background: var(--accent-2);
   transform: translateY(-1px);
-  box-shadow: 0 8px 30px rgba(196, 135, 74, 0.25);
+  box-shadow: 0 8px 30px rgba(200, 169, 110, 0.25);
 }
 
 .btn-secondary {
@@ -295,7 +295,7 @@ p { color: var(--text-2); }
   height: 44px;
   border-radius: var(--radius);
   background: var(--accent-dim);
-  border: 1px solid rgba(196, 135, 74, 0.2);
+  border: 1px solid rgba(200, 169, 110, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -430,7 +430,7 @@ footer {
   font-size: 12px;
   font-weight: 600;
   background: var(--accent-dim);
-  border: 1px solid rgba(196, 135, 74, 0.25);
+  border: 1px solid rgba(200, 169, 110, 0.25);
   color: var(--accent-2);
   letter-spacing: 0.03em;
 }
