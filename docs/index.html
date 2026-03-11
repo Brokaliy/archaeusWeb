@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docs — Archaeus</title>
+  <meta name="description" content="Archaeus documentation. Getting started, ACC guide, Hyprland tips, and more." />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .page-hero { padding: 140px 0 80px; border-bottom: 1px solid var(--border); }
+
+    /* Docs layout */
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      min-height: 100vh;
+    }
+
+    .docs-sidebar {
+      border-right: 1px solid var(--border);
+      padding: 48px 0;
+      position: sticky;
+      top: var(--nav-h);
+      max-height: calc(100vh - var(--nav-h));
+      overflow-y: auto;
+    }
+
+    .docs-sidebar::-webkit-scrollbar { width: 3px; }
+
+    .sidebar-group {
+      margin-bottom: 32px;
+      padding: 0 20px;
+    }
+
+    .sidebar-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 8px;
+      padding: 0 6px;
+    }
+
+    .sidebar-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .sidebar-links a {
+      display: block;
+      padding: 6px 10px;
+      font-size: 13px;
+      color: var(--text-2);
+      border-radius: var(--radius-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .sidebar-links a:hover { color: var(--text); background: var(--surface); }
+    .sidebar-links a.active { color: var(--accent-2); background: var(--accent-dim); }
+
+    /* Docs main content */
+    .docs-main {
+      padding: 56px 64px;
+      max-width: 780px;
+    }
+
+    .docs-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+    }
+
+    .docs-section h2 {
+      font-size: 28px;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .docs-section:first-child h2 { border-top: none; padding-top: 0; }
+
+    .docs-section h3 {
+      font-size: 18px;
+      color: var(--text);
+      margin: 28px 0 12px;
+    }
+
+    .docs-section p {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .docs-section ul, .docs-section ol {
+      padding-left: 20px;
+      color: var(--text-2);
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .docs-section li { margin-bottom: 4px; }
+
+    .docs-section pre {
+      margin: 20px 0;
+    }
+
+    .callout {
+      background: var(--accent-dim);
+      border: 1px solid rgba(196,135,74,0.25);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--text-2);
+      margin: 20px 0;
+      line-height: 1.7;
+    }
+
+    .callout strong { color: var(--accent-2); }
+
+    .callout-info {
+      background: rgba(59,130,246,0.06);
+      border-color: rgba(59,130,246,0.3);
+      border-left-color: #3b82f6;
+    }
+
+    .callout-info strong { color: #7ab4f8; }
+
+    /* TOC breadcrumb */
+    .docs-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-3);
+      margin-bottom: 40px;
+    }
+
+    .docs-breadcrumb a { color: var(--text-3); transition: color 0.15s; }
+    .docs-breadcrumb a:hover { color: var(--text-2); }
+    .docs-breadcrumb span { color: var(--text-2); }
+
+    /* Kbd */
+    kbd {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 2px 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-bottom-width: 2px;
+      border-radius: 4px;
+      color: var(--text);
+    }
+
+    /* Table */
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 20px 0;
+    }
+
+    .doc-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--surface);
+      color: var(--text-3);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-table td {
+      padding: 10px 14px;
+      color: var(--text-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-table tr:last-child td { border-bottom: none; }
+    .doc-table tr:hover td { background: var(--surface); }
+
+    @media (max-width: 900px) {
+      .docs-layout { grid-template-columns: 1fr; }
+      .docs-sidebar { display: none; }
+      .docs-main { padding: 40px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+      <path d="M13 3 L22 22 H4 Z" stroke="#c4874a" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+      <path d="M7.5 17 H18.5" stroke="#c4874a" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="13" cy="13" r="2.5" fill="#c4874a" opacity="0.7"/>
+    </svg>
+    Archaeus
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/download/">Download</a></li>
+    <li><a href="/docs/">Docs</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+  <a href="/download/" class="btn btn-primary btn-sm nav-cta">Download ISO</a>
+</nav>
+
+<!-- ── DOCS LAYOUT ───────────────────────────────────────── -->
+<div style="padding-top: var(--nav-h);">
+<div class="container">
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <aside class="docs-sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-heading">Getting Started</div>
+      <ul class="sidebar-links">
+        <li><a href="#installation" class="active">Installation</a></li>
+        <li><a href="#first-boot">First Boot</a></li>
+        <li><a href="#live-env">Live Environment</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-heading">Control Center</div>
+      <ul class="sidebar-links">
+        <li><a href="#acc-packages">Packages</a></li>
+        <li><a href="#acc-desktop">Desktop</a></li>
+        <li><a href="#acc-appearance">Appearance</a></li>
+        <li><a href="#acc-keybinds">Keybinds</a></li>
+        <li><a href="#acc-startup">Startup</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-heading">Hyprland</div>
+      <ul class="sidebar-links">
+        <li><a href="#hypr-config">Configuration</a></li>
+        <li><a href="#hypr-keybinds">Keybinds</a></li>
+        <li><a href="#hypr-workspaces">Workspaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-heading">Advanced</div>
+      <ul class="sidebar-links">
+        <li><a href="#aur">Using the AUR</a></li>
+        <li><a href="#theming">Theming</a></li>
+        <li><a href="#acc-dev">Extending ACC</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="docs-main">
+
+    <div class="docs-breadcrumb">
+      <a href="/">Archaeus</a>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <span>Documentation</span>
+    </div>
+
+    <!-- Installation -->
+    <section class="docs-section" id="installation">
+      <h2>Installation</h2>
+      <p>
+        Archaeus installs from a bootable ISO. The process takes around 10–15 minutes
+        on a modern machine.
+      </p>
+
+      <h3>1. Create a bootable USB</h3>
+      <p>Flash the ISO to a USB drive (8 GB minimum). You can use Balena Etcher on any OS, or <code>dd</code> on Linux/macOS:</p>
+      <pre><code>sudo dd if=archaeus-0.1.0-x86_64.iso of=/dev/sdX bs=4M status=progress && sync</code></pre>
+      <div class="callout">
+        <strong>Warning:</strong> Replace <code>/dev/sdX</code> with your USB drive. Double-check with <code>lsblk</code> first — this command will overwrite anything on the target device.
+      </div>
+
+      <h3>2. BIOS settings</h3>
+      <ul>
+        <li>Disable Secure Boot</li>
+        <li>Set boot mode to UEFI (recommended) or Legacy/CSM</li>
+        <li>Set USB as the first boot device</li>
+      </ul>
+
+      <h3>3. Run the installer</h3>
+      <p>From the live environment, open a terminal and run:</p>
+      <pre><code>archaeus-install</code></pre>
+      <p>The TUI installer will guide you through:</p>
+      <ul>
+        <li>Disk partitioning (auto or manual)</li>
+        <li>Locale and timezone selection</li>
+        <li>Username and password setup</li>
+        <li>Bootloader installation (systemd-boot or GRUB)</li>
+      </ul>
+    </section>
+
+    <!-- First boot -->
+    <section class="docs-section" id="first-boot">
+      <h2>First Boot</h2>
+      <p>
+        On your first login, Hyprland starts and the Archaeus Control Center
+        opens automatically in setup mode. It walks you through:
+      </p>
+      <ol>
+        <li>Choosing apps to install from a curated list</li>
+        <li>Setting your accent color and wallpaper</li>
+        <li>Optionally switching to KDE Plasma or GNOME</li>
+      </ol>
+      <p>The setup wizard only appears on the first login. After that, you can open ACC at any time with <kbd>SUPER</kbd> + <kbd>A</kbd>.</p>
+
+      <div class="callout callout-info">
+        <strong>Tip:</strong> The live environment during installation is a full preview of Archaeus. Explore before you commit — nothing is written to disk until you run <code>archaeus-install</code>.
+      </div>
+    </section>
+
+    <!-- Live environment -->
+    <section class="docs-section" id="live-env">
+      <h2>Live Environment</h2>
+      <p>The live ISO boots into a full Hyprland session. Default credentials:</p>
+      <table class="doc-table">
+        <thead><tr><th>Field</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Username</td><td><code>archaeus</code></td></tr>
+          <tr><td>Password</td><td><code>archaeus</code></td></tr>
+          <tr><td>Root password</td><td><code>archaeus</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ACC Packages -->
+    <section class="docs-section" id="acc-packages">
+      <h2>ACC — Packages</h2>
+      <p>
+        The Packages tab provides a grid of popular applications. Click any
+        app to install it — ACC runs <code>yay -S &lt;package&gt;</code> in the background
+        and shows a progress indicator.
+      </p>
+      <p>
+        For anything not in the grid, use the search bar. It queries the AUR
+        and pacman repositories and shows results instantly.
+      </p>
+      <div class="callout">
+        <strong>Under the hood:</strong> ACC uses <code>yay</code> as the AUR helper. You can always check what was installed by running <code>yay -Qe</code> in a terminal.
+      </div>
+    </section>
+
+    <!-- ACC Desktop -->
+    <section class="docs-section" id="acc-desktop">
+      <h2>ACC — Desktop</h2>
+      <p>Switch between Hyprland, KDE Plasma, and GNOME from the Desktop tab. Archaeus installs the required packages and sets the new session as the SDDM default. The change takes effect on next login.</p>
+      <div class="callout callout-info">
+        <strong>Note:</strong> Switching DEs does not remove the previous one. You can switch back at any time, or log in to an older session from the SDDM login screen by selecting a different session.
+      </div>
+    </section>
+
+    <!-- ACC Appearance -->
+    <section class="docs-section" id="acc-appearance">
+      <h2>ACC — Appearance</h2>
+      <p>The Appearance tab controls:</p>
+      <ul>
+        <li><strong>Accent color</strong> — updates Hyprland border color, Waybar, and ACC itself</li>
+        <li><strong>Wallpaper</strong> — picks from a curated gallery or browse local files</li>
+        <li><strong>Font</strong> — system-wide UI font (Inter, Geist, or custom)</li>
+        <li><strong>Corner radius</strong> — Hyprland window rounding (0–20px)</li>
+        <li><strong>Blur</strong> — toggle and strength</li>
+      </ul>
+    </section>
+
+    <!-- ACC Keybinds -->
+    <section class="docs-section" id="acc-keybinds">
+      <h2>ACC — Keybinds</h2>
+      <p>Visual editor for Hyprland keybinds. Click any action row, press a key combination, and ACC writes the binding to <code>~/.config/hypr/hyprland.conf</code> and reloads the config.</p>
+
+      <h3>Default keybinds</h3>
+      <table class="doc-table">
+        <thead><tr><th>Action</th><th>Default</th></tr></thead>
+        <tbody>
+          <tr><td>Open terminal</td><td><kbd>SUPER</kbd> + <kbd>Return</kbd></td></tr>
+          <tr><td>App launcher</td><td><kbd>SUPER</kbd> + <kbd>D</kbd></td></tr>
+          <tr><td>Kill window</td><td><kbd>SUPER</kbd> + <kbd>Q</kbd></td></tr>
+          <tr><td>Open ACC</td><td><kbd>SUPER</kbd> + <kbd>A</kbd></td></tr>
+          <tr><td>Screenshot</td><td><kbd>Print</kbd></td></tr>
+          <tr><td>Toggle float</td><td><kbd>SUPER</kbd> + <kbd>T</kbd></td></tr>
+          <tr><td>Workspace 1–9</td><td><kbd>SUPER</kbd> + <kbd>1–9</kbd></td></tr>
+          <tr><td>Move to workspace</td><td><kbd>SUPER</kbd> + <kbd>SHIFT</kbd> + <kbd>1–9</kbd></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ACC Startup -->
+    <section class="docs-section" id="acc-startup">
+      <h2>ACC — Startup</h2>
+      <p>The Startup tab lists autostart entries. Toggle any app on or off — ACC writes to <code>~/.config/hypr/hyprland.conf</code> exec-once entries.</p>
+    </section>
+
+    <!-- Hyprland config -->
+    <section class="docs-section" id="hypr-config">
+      <h2>Hyprland Configuration</h2>
+      <p>
+        The Archaeus Hyprland config lives at <code>~/.config/hypr/hyprland.conf</code>.
+        While the ACC handles most settings visually, you can also edit it directly.
+      </p>
+      <pre><code><span style="color:#7a6d58"># Reload config without restarting</span>
+hyprctl reload
+
+<span style="color:#7a6d58"># Check active config</span>
+hyprctl getoption general:gaps_out</code></pre>
+    </section>
+
+    <!-- Hyprland workspaces -->
+    <section class="docs-section" id="hypr-workspaces">
+      <h2>Workspaces</h2>
+      <p>Hyprland uses numbered workspaces (1–10). Navigate with:</p>
+      <ul>
+        <li><kbd>SUPER</kbd> + <kbd>1–9</kbd> — switch to workspace</li>
+        <li><kbd>SUPER</kbd> + <kbd>SHIFT</kbd> + <kbd>1–9</kbd> — move focused window to workspace</li>
+        <li><kbd>SUPER</kbd> + <kbd>scroll</kbd> — cycle through workspaces</li>
+        <li>Waybar workspace buttons — click to jump</li>
+      </ul>
+    </section>
+
+    <!-- AUR -->
+    <section class="docs-section" id="aur">
+      <h2>Using the AUR</h2>
+      <p>
+        Archaeus ships with <code>yay</code> as the AUR helper. You can use it directly
+        in the terminal — ACC is just a wrapper around it.
+      </p>
+      <pre><code><span style="color:#7a6d58"># Install a package</span>
+yay -S package-name
+
+<span style="color:#7a6d58"># Update everything</span>
+yay -Syu
+
+<span style="color:#7a6d58"># Search</span>
+yay -Ss keyword
+
+<span style="color:#7a6d58"># Remove a package</span>
+yay -Rns package-name</code></pre>
+    </section>
+
+    <!-- Extending ACC -->
+    <section class="docs-section" id="acc-dev">
+      <h2>Extending ACC</h2>
+      <p>
+        ACC is an open-source Electron app. The source lives in
+        <code>~/.local/share/archaeus/acc/</code>. You can add new panels by creating
+        a new view file and registering it in <code>src/renderer/views/index.js</code>.
+      </p>
+      <div class="callout callout-info">
+        <strong>Coming soon:</strong> A plugin API for third-party ACC panels is planned for a future release.
+      </div>
+    </section>
+
+  </main>
+
+</div>
+</div>
+</div>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg width="20" height="20" viewBox="0 0 26 26" fill="none">
+          <path d="M13 3 L22 22 H4 Z" stroke="#c4874a" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+          <circle cx="13" cy="13" r="2.5" fill="#c4874a" opacity="0.7"/>
+        </svg>
+        Archaeus
+      </div>
+      <ul class="footer-links">
+        <li><a href="/features/">Features</a></li>
+        <li><a href="/download/">Download</a></li>
+        <li><a href="/docs/">Docs</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="https://github.com/Brokaliy/archaeus" target="_blank">GitHub</a></li>
+      </ul>
+      <span class="footer-copy">© 2026 Archaeus · archaeus.7n7.dev</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features — Archaeus</title>
+  <meta name="description" content="Archaeus Control Center, Hyprland, coffee-shop aesthetic, AUR access — everything that makes Archaeus different." />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ── FEATURES PAGE ─────────────────────────────────── */
+    .features-hero { padding: 140px 0 80px; border-bottom: 1px solid var(--border); }
+
+    .feature-block {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-block:last-child { border-bottom: none; }
+
+    .feature-block-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .feature-block-inner.reverse { direction: rtl; }
+    .feature-block-inner.reverse > * { direction: ltr; }
+
+    .feature-text h3 {
+      margin-bottom: 14px;
+      font-size: 32px;
+    }
+
+    .feature-text > p {
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .feature-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .feature-points li::before {
+      content: '';
+      display: block;
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 8px;
+    }
+
+    .feature-visual-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    /* Terminal block */
+    .term-block {
+      background: var(--bg-3);
+      padding: 0;
+    }
+
+    .term-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .term-body {
+      padding: 20px 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .term-prompt { color: #c4874a; }
+    .term-cmd    { color: var(--text); }
+    .term-out    { color: var(--text-3); }
+    .term-green  { color: #57a65f; }
+    .term-blue   { color: #3b82f6; }
+
+    /* DE switcher mock */
+    .de-grid {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .de-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+
+    .de-card.active { border-color: var(--accent); }
+
+    .de-preview {
+      height: 60px;
+    }
+
+    .de-label {
+      padding: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text-2);
+      background: var(--surface-2);
+    }
+
+    .de-active-badge {
+      font-size: 10px;
+      color: var(--accent);
+    }
+
+    /* Keybind mock */
+    .kb-list {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .kb-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .kb-action { font-size: 13px; color: var(--text-2); }
+
+    .kb-keys {
+      display: flex;
+      gap: 4px;
+    }
+
+    .kb-key {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 2px 7px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: 4px;
+      color: var(--text);
+    }
+
+    /* Packages mock */
+    .pkg-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pkg-search {
+      flex: 1;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+
+    .pkg-grid {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .pkg-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 8px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 11px;
+      color: var(--text-3);
+      text-align: center;
+    }
+
+    .pkg-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pkg-installed {
+      font-size: 9px;
+      color: #57a65f;
+      font-weight: 600;
+    }
+
+    /* Hyprland cfg mock */
+    .hypr-cfg {
+      padding: 20px 24px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .cfg-comment { color: var(--text-3); }
+    .cfg-key     { color: var(--accent-2); }
+    .cfg-eq      { color: var(--text-3); }
+    .cfg-val     { color: #57a65f; }
+    .cfg-num     { color: #3b82f6; }
+
+    /* ── TECH STACK SECTION ──────────────────────────────── */
+    .tech-stack-section {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tech-stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .tech-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .tech-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .tech-role {
+      font-size: 12px;
+      color: var(--accent-2);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .tech-desc {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .feature-block-inner { grid-template-columns: 1fr; gap: 40px; }
+      .feature-block-inner.reverse { direction: ltr; }
+      .tech-stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .de-grid { grid-template-columns: repeat(3, 1fr); }
+      .pkg-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .tech-stack-grid { grid-template-columns: 1fr; }
+      .de-grid { grid-template-columns: repeat(2, 1fr); }
+      .pkg-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+      <path d="M13 3 L22 22 H4 Z" stroke="#c4874a" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+      <path d="M7.5 17 H18.5" stroke="#c4874a" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="13" cy="13" r="2.5" fill="#c4874a" opacity="0.7"/>
+    </svg>
+    Archaeus
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/download/">Download</a></li>
+    <li><a href="/docs/">Docs</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+  <a href="/download/" class="btn btn-primary btn-sm nav-cta">Download ISO</a>
+</nav>
+
+<!-- ── PAGE HERO ─────────────────────────────────────────── -->
+<section class="features-hero">
+  <div class="container">
+    <span class="section-label reveal">Everything Archaeus offers</span>
+    <h1 class="reveal reveal-delay-1">Features</h1>
+    <p class="reveal reveal-delay-2">
+      A full Arch Linux system with a control center that makes it accessible —
+      without sacrificing a single power user feature.
+    </p>
+  </div>
+</section>
+
+<!-- ── FEATURE: ACC ─────────────────────────────────────── -->
+<section class="feature-block">
+  <div class="container">
+    <div class="feature-block-inner">
+      <div class="feature-text reveal">
+        <span class="section-label">Core feature</span>
+        <h3>Archaeus Control Center</h3>
+        <p>
+          The ACC is a native Electron application that ships as part of the OS.
+          It provides a GUI layer over the most common system administration tasks —
+          no terminal knowledge required.
+        </p>
+        <ul class="feature-points">
+          <li>Install packages from a curated grid or search the entire AUR</li>
+          <li>Switch between Hyprland, KDE Plasma, and GNOME with one click</li>
+          <li>Visual keybind editor that writes to <code>hyprland.conf</code></li>
+          <li>Appearance panel for accent color, wallpaper, fonts, and corner radius</li>
+          <li>Startup manager to toggle autostart applications</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="feature-visual-box">
+          <div class="pkg-header">
+            <div class="pkg-search">🔍  Search packages…</div>
+          </div>
+          <div class="pkg-grid">
+            <div class="pkg-item">
+              <div class="pkg-icon" style="background:#1a6ac8">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="6"/></svg>
+              </div>
+              Firefox
+              <span class="pkg-installed">✓ Installed</span>
+            </div>
+            <div class="pkg-item">
+              <div class="pkg-icon" style="background:#1e7e34">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><rect x="2" y="2" width="12" height="12" rx="2.5"/></svg>
+              </div>
+              VS Code
+            </div>
+            <div class="pkg-item">
+              <div class="pkg-icon" style="background:#5865f2">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><circle cx="5" cy="8" r="3"/><circle cx="11" cy="8" r="3"/></svg>
+              </div>
+              Discord
+            </div>
+            <div class="pkg-item">
+              <div class="pkg-icon" style="background:#1db954">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="6"/></svg>
+              </div>
+              Spotify
+              <span class="pkg-installed">✓ Installed</span>
+            </div>
+            <div class="pkg-item">
+              <div class="pkg-icon" style="background:#e44f26">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><polygon points="8,2 14,14 2,14"/></svg>
+              </div>
+              OBS
+            </div>
+            <div class="pkg-item">
+              <div class="pkg-icon" style="background:#1a9fff">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><rect x="1" y="4" width="14" height="8" rx="2"/></svg>
+              </div>
+              Steam
+            </div>
+            <div class="pkg-item">
+              <div class="pkg-icon" style="background:#ff6b35">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><circle cx="8" cy="8" r="5"/></svg>
+              </div>
+              Blender
+            </div>
+            <div class="pkg-item">
+              <div class="pkg-icon" style="background:#6b21a8">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><rect x="3" y="3" width="10" height="10" rx="2"/></svg>
+              </div>
+              VLC
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE: HYPRLAND ─────────────────────────────────── -->
+<section class="feature-block">
+  <div class="container">
+    <div class="feature-block-inner reverse">
+      <div class="feature-text reveal">
+        <span class="section-label">Default compositor</span>
+        <h3>Hyprland, pre-configured</h3>
+        <p>
+          Hyprland is a Wayland compositor known for smooth animations and a highly
+          customisable tiling layout. Archaeus ships a complete, opinionated config
+          that looks great on first boot — no config editing required.
+        </p>
+        <ul class="feature-points">
+          <li>Rounded corners and subtle window blur</li>
+          <li>Smooth animations (fade, slide, workspaces)</li>
+          <li>Custom Waybar with clock, workspace indicators, media info</li>
+          <li>Sensible default keybinds (overrideable in ACC)</li>
+          <li>SDDM login screen themed to match</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="feature-visual-box term-block">
+          <div class="term-header">
+            <span class="window-dot dot-red"></span>
+            <span class="window-dot dot-yellow"></span>
+            <span class="window-dot dot-green"></span>
+            <span class="window-title">~/.config/hypr/hyprland.conf</span>
+          </div>
+          <div class="hypr-cfg">
+            <div><span class="cfg-comment"># Archaeus default — warm theme</span></div>
+            <div>&nbsp;</div>
+            <div><span class="cfg-key">general</span><span class="cfg-eq"> {</span></div>
+            <div>&nbsp;&nbsp;<span class="cfg-key">gaps_in</span>    <span class="cfg-eq">=</span> <span class="cfg-num">5</span></div>
+            <div>&nbsp;&nbsp;<span class="cfg-key">gaps_out</span>   <span class="cfg-eq">=</span> <span class="cfg-num">12</span></div>
+            <div>&nbsp;&nbsp;<span class="cfg-key">border_size</span><span class="cfg-eq">=</span> <span class="cfg-num">1</span></div>
+            <div>&nbsp;&nbsp;<span class="cfg-key">col.active_border</span> <span class="cfg-eq">=</span> <span class="cfg-val">rgba(c4874aff)</span></div>
+            <div>}</div>
+            <div>&nbsp;</div>
+            <div><span class="cfg-key">decoration</span><span class="cfg-eq"> {</span></div>
+            <div>&nbsp;&nbsp;<span class="cfg-key">rounding</span>   <span class="cfg-eq">=</span> <span class="cfg-num">12</span></div>
+            <div>&nbsp;&nbsp;<span class="cfg-key">blur</span><span class="cfg-eq"> {</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cfg-key">enabled</span> <span class="cfg-eq">=</span> <span class="cfg-val">true</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cfg-key">size</span>    <span class="cfg-eq">=</span> <span class="cfg-num">8</span></div>
+            <div>&nbsp;&nbsp;<span class="cfg-eq">}</span></div>
+            <div>}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE: DESKTOP SWITCH ───────────────────────────── -->
+<section class="feature-block">
+  <div class="container">
+    <div class="feature-block-inner">
+      <div class="feature-text reveal">
+        <span class="section-label">Desktop environments</span>
+        <h3>Switch DEs without reinstalling</h3>
+        <p>
+          Not a Hyprland fan? The Desktop tab in ACC lets you install and switch to
+          KDE Plasma or GNOME. Archaeus installs the packages, sets the session
+          default in SDDM, and you're done.
+        </p>
+        <ul class="feature-points">
+          <li>Hyprland — fast, tiling, Wayland-native</li>
+          <li>KDE Plasma — feature-rich, familiar, highly customisable</li>
+          <li>GNOME — clean, modern, touch-friendly workflow</li>
+          <li>Live preview thumbnails before switching</li>
+          <li>Revert at any time without reinstalling the OS</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="feature-visual-box">
+          <div class="de-grid">
+            <div class="de-card active">
+              <div class="de-preview" style="background:linear-gradient(135deg,#1c1a14 0%, #2d2518 100%);">
+                <div style="padding:8px;font-size:10px;color:#c4874a;font-family:var(--mono);">⬛ ⬛ ⬛</div>
+              </div>
+              <div class="de-label">Hyprland <span class="de-active-badge">• Active</span></div>
+            </div>
+            <div class="de-card">
+              <div class="de-preview" style="background:linear-gradient(135deg,#1a2035 0%, #2a3a5a 100%);">
+                <div style="padding:8px;font-size:10px;color:#7aa2d4;font-family:var(--mono);">▬▬▬</div>
+              </div>
+              <div class="de-label">KDE Plasma</div>
+            </div>
+            <div class="de-card">
+              <div class="de-preview" style="background:linear-gradient(135deg,#1a1a2e 0%, #2e2e4e 100%);">
+                <div style="padding:8px;font-size:10px;color:#9b9bd4;font-family:var(--mono);">⬤ ⬤</div>
+              </div>
+              <div class="de-label">GNOME</div>
+            </div>
+          </div>
+          <div style="padding:0 16px 16px;">
+            <button class="btn btn-primary" style="width:100%;justify-content:center;border-radius:var(--radius-sm)">
+              Apply Hyprland
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE: KEYBINDS ─────────────────────────────────── -->
+<section class="feature-block">
+  <div class="container">
+    <div class="feature-block-inner reverse">
+      <div class="feature-text reveal">
+        <span class="section-label">Keybinds</span>
+        <h3>Visual keybind editor</h3>
+        <p>
+          Hyprland keybinds are normally configured by hand in <code>hyprland.conf</code>.
+          The ACC Keybinds tab abstracts this — click an action, press your desired
+          combo, and it writes the config for you.
+        </p>
+        <ul class="feature-points">
+          <li>All default Archaeus actions listed and re-mappable</li>
+          <li>Changes apply without restarting Hyprland</li>
+          <li>Conflict detection prevents binding the same combo twice</li>
+          <li>Export / reset to defaults at any time</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="feature-visual-box">
+          <div class="kb-list">
+            <div class="kb-row">
+              <span class="kb-action">Launch Terminal</span>
+              <div class="kb-keys">
+                <span class="kb-key">SUPER</span>
+                <span class="kb-key">Return</span>
+              </div>
+            </div>
+            <div class="kb-row">
+              <span class="kb-action">App Launcher</span>
+              <div class="kb-keys">
+                <span class="kb-key">SUPER</span>
+                <span class="kb-key">D</span>
+              </div>
+            </div>
+            <div class="kb-row">
+              <span class="kb-action">Kill Window</span>
+              <div class="kb-keys">
+                <span class="kb-key">SUPER</span>
+                <span class="kb-key">Q</span>
+              </div>
+            </div>
+            <div class="kb-row">
+              <span class="kb-action">Workspace 1</span>
+              <div class="kb-keys">
+                <span class="kb-key">SUPER</span>
+                <span class="kb-key">1</span>
+              </div>
+            </div>
+            <div class="kb-row">
+              <span class="kb-action">Screenshot</span>
+              <div class="kb-keys">
+                <span class="kb-key">Print</span>
+              </div>
+            </div>
+            <div class="kb-row" style="border-color:var(--accent); background:var(--accent-dim);">
+              <span class="kb-action" style="color:var(--text);">Toggle Float</span>
+              <div class="kb-keys">
+                <span style="font-size:11px;color:var(--accent);">Press a key combo…</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TECH STACK ─────────────────────────────────────────── -->
+<section class="tech-stack-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Under the hood</span>
+      <h2>The tech stack</h2>
+    </div>
+    <div class="tech-stack-grid">
+      <div class="tech-card reveal reveal-delay-1">
+        <div class="tech-role">Base</div>
+        <div class="tech-name">Arch Linux</div>
+        <p class="tech-desc">Rolling release, minimal base, full AUR access via <code>yay</code>. Built with <code>archiso</code> into a bootable ISO.</p>
+      </div>
+      <div class="tech-card reveal reveal-delay-2">
+        <div class="tech-role">Compositor</div>
+        <div class="tech-name">Hyprland</div>
+        <p class="tech-desc">Wayland compositor with fluid animations, tiling layouts, blur, and rounded corners. Custom Waybar status bar.</p>
+      </div>
+      <div class="tech-card reveal reveal-delay-3">
+        <div class="tech-role">Control Center</div>
+        <div class="tech-name">Electron ACC</div>
+        <p class="tech-desc">Custom Electron app providing GUI over package management, DE switching, appearance, and keybinds.</p>
+      </div>
+      <div class="tech-card reveal reveal-delay-4">
+        <div class="tech-role">Terminal</div>
+        <div class="tech-name">Kitty + zsh</div>
+        <p class="tech-desc">Kitty terminal with GPU acceleration, coffee-shop color theme, and Starship prompt for a clean shell experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg width="20" height="20" viewBox="0 0 26 26" fill="none">
+          <path d="M13 3 L22 22 H4 Z" stroke="#c4874a" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+          <circle cx="13" cy="13" r="2.5" fill="#c4874a" opacity="0.7"/>
+        </svg>
+        Archaeus
+      </div>
+      <ul class="footer-links">
+        <li><a href="/features/">Features</a></li>
+        <li><a href="/download/">Download</a></li>
+        <li><a href="/docs/">Docs</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="https://github.com/Brokaliy/archaeus" target="_blank">GitHub</a></li>
+      </ul>
+      <span class="footer-copy">© 2026 Archaeus · archaeus.7n7.dev</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
